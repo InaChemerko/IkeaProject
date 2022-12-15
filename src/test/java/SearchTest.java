@@ -53,13 +53,15 @@ public class SearchTest extends BaseTest {
         //check if 2 added item is displayed
         Assert.assertEquals(getDriver().findElements(By.xpath("//div[contains(@class,'product_contents')]")).size(), 2);
 
-        //click on discount link, enter random # click apply
+        //click on discount link, enter random #
         getDriver().findElement(By.xpath("//button[contains(@class,'item-header')]")).click();
         action.moveToElement(getDriver()
-                .findElement(By.id("discountCode"))).click()
+                        .findElement(By.id("discountCode"))).click()
                 .sendKeys(RandomStringUtils.randomAlphanumeric(15)).perform();
-        action.moveToElement(getDriver().findElement(By.xpath("//span[text()='Apply']"))).click().perform();
-        action.moveToElement(getDriver().findElement(By.xpath("//span[text()='Discount code is invalid.']"))).perform();
+        //move to blue checkout button which is lower since "Bear" overlapped
+        action.moveToElement(getDriver().findElement(By.xpath("//button[@data-testid='checkoutButton__default']"))).perform();
+        //click apply and check Discount code is invalid
+        getDriver().findElement(By.xpath("//span[text()='Apply']")).click();
 
         Assert.assertTrue(getDriver().findElement(By.xpath("//span[text()='Discount code is invalid.']")).isDisplayed());
     }
