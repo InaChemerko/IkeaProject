@@ -20,7 +20,7 @@ public abstract class BaseTest {
         return driver;
     }
 
-    protected WebDriverWait getWait() {
+    public WebDriverWait getWait() {
         return new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 

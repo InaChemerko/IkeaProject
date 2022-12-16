@@ -1,3 +1,5 @@
+import model.HomePage;
+import model.ShoppingCartPage;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -61,8 +63,29 @@ public class SearchTest extends BaseTest {
         //move to blue checkout button which is lower since "Bear" overlapped
         action.moveToElement(getDriver().findElement(By.xpath("//button[@data-testid='checkoutButton__default']"))).perform();
         //click apply and check Discount code is invalid
-        getDriver().findElement(By.xpath("//span[text()='Apply']")).click();
+        action.moveToElement(getDriver().findElement(By.xpath("//span[text()='Apply']"))).click().perform();
 
         Assert.assertTrue(getDriver().findElement(By.xpath("//span[text()='Discount code is invalid.']")).isDisplayed());
+    }
+
+    @Test
+    public void testSearchWithPOM() {
+       // HomePage homePage = new HomePage(getDriver())
+        //div/ul/li[5]/a/span
+        ShoppingCartPage cartPage =  new HomePage(getDriver())
+                .clickCookieOkButton()
+                .enterWordAndPressEnterInSearchField("sofa")
+                .clickAddToCartButton(1)
+                .scrollToTopPage()
+                .clearSearchField()
+                .enterWordAndPressEnterInSearchField("table")
+                .clickAddToCartButton(3)
+                .scrollToTopPage()
+                .clickShoppingCartButton();
+                //.loadProductList();
+
+        Assert.assertEquals(cartPage.getProductItems().size(), 2);
+
+
     }
 }
