@@ -70,9 +70,7 @@ public class SearchTest extends BaseTest {
 
     @Test
     public void testSearchWithPOM() {
-       // HomePage homePage = new HomePage(getDriver())
-        //div/ul/li[5]/a/span
-        ShoppingCartPage cartPage =  new HomePage(getDriver())
+           ShoppingCartPage cartPage =  new HomePage(getDriver())
                 .clickCookieOkButton()
                 .enterWordAndPressEnterInSearchField("sofa")
                 .clickAddToCartButton(1)
@@ -82,10 +80,12 @@ public class SearchTest extends BaseTest {
                 .clickAddToCartButton(3)
                 .scrollToTopPage()
                 .clickShoppingCartButton();
-                //.loadProductList();
+                //.loadProductList(); //need to figure out how to wait till page is loaded
 
         Assert.assertEquals(cartPage.getProductItems().size(), 2);
 
+        cartPage.applyDiscount();
 
+        Assert.assertTrue(cartPage.getInvalidMessage());
     }
 }

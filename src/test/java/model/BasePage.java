@@ -9,9 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public abstract class BasePage {
-    //public BasePage(WebDriver driver) {
-//        super(driver);
-//    }
 
     private final WebDriver driver;
 

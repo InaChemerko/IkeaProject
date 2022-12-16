@@ -5,7 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public abstract class BaseModel {
     private final WebDriver driver;
-
+//don't know if we need this page
     protected WebDriver getDriver() {
         return driver;
     }

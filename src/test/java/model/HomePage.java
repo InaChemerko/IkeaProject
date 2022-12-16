@@ -3,10 +3,6 @@ package model;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static runner.TestUtils.getAction;
 
 public class HomePage extends BasePage {
@@ -70,6 +66,4 @@ public class HomePage extends BasePage {
 
         return new ShoppingCartPage(getDriver());
     }
-
-
 }
